@@ -1,4 +1,4 @@
-const { game, newGame, showScore } = require('../game');
+const { game, newGame, showScore, addTurn } = require('../game');
 
 beforeAll(() => {
     let fs = require('fs');
@@ -26,7 +26,7 @@ describe("game object contains correct keys", () => {
     })
 });
 
-describe("new game", () => {
+describe("newGame works correctly", () => {
     beforeAll(() => {
         game.score = 42;
         game.playerMoves = [1,2,3];
@@ -40,8 +40,8 @@ describe("new game", () => {
     test('should clear te player moves array', () => {
         expect(game.playerMoves).toEqual([]);
     });
-    test("should clear te current game array", () => {
-      expect(game.currentGame).toEqual([]);
+    test("should be one move in the computer's game array", () => {
+      expect(game.currentGame.length).toBe(1);
     });
     test('should display 0 for the element with id of score', () => {
         expect(document.getElementById('score').innerText).toEqual(0);
